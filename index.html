@@ -6,6 +6,9 @@
   <meta name="theme-color" content="#0d0d14"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-title" content="Math Trainer"/>
+  
+  <link rel="manifest" href="manifest.json">
+  
   <title>Math Trainer Pro</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
@@ -618,5 +621,6 @@ window.addEventListener('beforeinstallprompt',e=>{
 });
 function iApp(){if(dp){dp.prompt();dp.userChoice.then(()=>{dp=null});const b=document.getElementById('ib');if(b)b.remove();}}
 </script>
+  
 </body>
 </html>
