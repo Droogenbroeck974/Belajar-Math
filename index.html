@@ -167,9 +167,11 @@
       <span id="iTotal">80 total soal</span><span>·</span><span>Timer otomatis</span>
     </div>
     <button class="btn-primary" onclick="startQuiz()">MULAI LATIHAN →</button>
-    <button class="btn-ghost" id="histBtn" style="margin-top:10px;colour:#fff;display:none" onclick="showHistory()">📊 Lihat Riwayat Analisis</button>
+    <button class="btn-ghost" id="histBtn" style="margin-top:10px;colour:#333;display:none" onclick="showHistory()">📊 Lihat Riwayat Analisis</button>
   </div>
 
+
+  
   <!-- QUIZ (static shell, content updated via JS) -->
   <div id="scQuiz" style="display:none">
     <div id="opTabs" style="display:flex;gap:6px;margin-bottom:24px"></div>
@@ -189,6 +191,8 @@
     <button id="submitBtn" onclick="submitAnswer()">KIRIM ↵</button>
   </div>
 
+
+  
   <!-- RESULT & HISTORY (innerHTML rebuilt on navigate) -->
   <div id="scResult" style="display:none"></div>
   <div id="scHistory" style="display:none"></div>
