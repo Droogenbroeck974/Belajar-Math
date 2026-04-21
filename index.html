@@ -215,7 +215,8 @@ const TQ=20;
 //  STATE
 // ══════════════════════════════════════════════════
 let selOps=[],diff='medium',opQ=[],oIdx=0,qs=[],cur=0,res=[],startT=null,busy=false;
-let history=lh(),summary=[],atab='overview',hOp=null,dSess=null;
+let sessionHistory=lh(),summary=[],atab='overview',hOp=null,dSess=null;
+
 
 // ══════════════════════════════════════════════════
 //  HELPERS
@@ -248,7 +249,7 @@ function mkQ(k,d){
 }
 function genQs(k,d){const q=[],s=new Set();while(q.length<TQ){const x=mkQ(k,d);if(!s.has(x.display)){s.add(x.display);q.push(x)}}return q}
 function lh(){try{return JSON.parse(localStorage.getItem('mth')||'{}')}catch(e){return{}}}
-function sh(){try{localStorage.setItem('mth',JSON.stringify(history))}catch(e){}}
+function sh(){try{localStorage.setItem('mth',JSON.stringify(sessionHistory))}catch(e){}}
 
 // ══════════════════════════════════════════════════
 //  HOME — in-place DOM updates (no flicker)
@@ -369,8 +370,8 @@ function submitAnswer(){
 
     if(cur+1>=TQ){
       const sess={date:new Date().toLocaleString('id-ID',{dateStyle:'short',timeStyle:'short'}),difficulty:diff,results:nr};
-      if(!history[opQ[oIdx]])history[opQ[oIdx]]=[];
-      history[opQ[oIdx]].push(sess);sh();
+      if(!sessionHistory[opQ[oIdx]])sessionHistory[opQ[oIdx]]=[];
+      sessionHistory[opQ[oIdx]].push(sess);sh();
       summary.push({opKey:opQ[oIdx],session:sess});
       const ni=oIdx+1;
       if(ni<opQ.length){
@@ -477,9 +478,9 @@ function bHOv(){
     <button class="btn-sm" onclick="${bd}">← Kembali</button>
     <div><div style="font-size:9px;letter-spacing:4px;color:#333">ANALISIS</div>
       <div style="font-size:18px;font-weight:500;color:#fff">Riwayat Latihan</div></div></div>`;
-  if(!Object.keys(history).length)return h+`<div style="text-align:center;color:#333;padding:60px;font-size:13px">Belum ada data.<br>Selesaikan kuis dulu!</div>`;
+  if(!Object.keys(sessionHistory).length)return h+`<div style="text-align:center;color:#333;padding:60px;font-size:13px">Belum ada data.<br>Selesaikan kuis dulu!</div>`;
   OPS.forEach(o=>{
-    const ss=history[o.key];if(!ss||!ss.length)return;
+    const ss=sessionHistory[o.key];if(!ss||!ss.length)return;
     const ar=ss.flatMap(s=>s.results),c=ar.filter(r=>r.correct).length,a=Math.round(c/ar.length*100),av=am(ar),ms=mast(ar),mc_=mc(ms);
     const tr=ss.slice(-5).map(s=>Math.round(s.results.filter(r=>r.correct).length/s.results.length*100));
     h+=`<div class="card" style="border-color:${o.color}33;cursor:pointer" onclick="drillH('${o.key}')">
@@ -509,7 +510,7 @@ function bHOv(){
 }
 function drillH(key){hOp=key;dSess=null;paintHistory();}
 function bHDrill(){
-  const o=op(hOp),ss=history[hOp]||[];
+  const o=op(hOp),ss=sessionHistory[hOp]||[];
   let h=`<div style="display:flex;align-items:center;gap:12px;margin-bottom:28px">
     <button class="btn-sm" style="border-color:${o.color}44;color:${o.color}" onclick="hOp=null;dSess=null;paintHistory()">← Kembali</button>
     <div><div style="font-size:9px;letter-spacing:4px;color:#333">ANALISIS</div>
@@ -587,7 +588,7 @@ function dtbl(r,o){
 // ══════════════════════════════════════════════════
 function goHome(){
   const hb=document.getElementById('histBtn');
-  if(hb)hb.style.display=Object.keys(history).length>0?'block':'none';
+  if(hb)hb.style.display=Object.keys(sessionHistory).length>0?'block':'none';
   showSc('scHome');
 }
 
@@ -596,7 +597,7 @@ function goHome(){
 // ══════════════════════════════════════════════════
 (function(){
   const hb=document.getElementById('histBtn');
-  if(hb&&Object.keys(history).length>0)hb.style.display='block';
+  if(hb&&Object.keys(sessionHistory).length>0)hb.style.display='block';
 })();
 
 // ══════════════════════════════════════════════════
