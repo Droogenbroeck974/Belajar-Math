@@ -8,8 +8,7 @@
   <meta name="apple-mobile-web-app-title" content="Math Trainer"/>
   
   <link rel="manifest" href="manifest.json">
-  
-  <title>Aritmatika Dasar</title>
+
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -128,13 +127,10 @@
     <div style="text-align:center;margin-bottom:36px">
       <div style="font-size:9px;letter-spacing:8px;color:#4ade80;opacity:.6;margin-bottom:10px">Aritmatika Dasar</div>
       <h1 style="font-size:38px;font-weight:500;color:#fff;letter-spacing:-1px;text-shadow:0 0 80px rgba(74,222,128,.2)">
-        Latihan<br><span style="font-weight:300;color:#fff">Buat Bang Sandi<br></span>
+        Latihan<br><span style="font-weight:300;color:#fff">Aritmatika Dasar<br></span>
       </h1>
     </div>
-    <div style="margin-bottom:28px">
-      <div style="font-size:9px;letter-spacing:4px;color:#fff;margin-bottom:14px">
-        PILIH TIPE SOAL <span style="color:#555">(kosong = semua)</span>
-      </div>
+    
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
         <button class="op-btn" id="ob-add" onclick="toggleOp('add')">
           <span style="font-size:24px;color:#4ade80;width:28px;text-align:center">+</span>
@@ -159,7 +155,7 @@
       </div>
     </div>
     <div style="margin-bottom:28px">
-      <div style="font-size:9px;letter-spacing:4px;color:#333;margin-bottom:14px">KESULITAN</div>
+      <div style="font-size:9px;letter-spacing:4px;color:#fff;margin-bottom:14px">KESULITAN</div>
       <div style="display:flex;gap:8px">
         <button class="diff-btn" id="db-easy" onclick="setDiff('easy')"><div class="dlbl">Mudah</div><div class="dsub">Angka kecil</div></button>
         <button class="diff-btn sel" id="db-medium" onclick="setDiff('medium')"><div class="dlbl">Sedang</div><div class="dsub">2 digit</div></button>
@@ -171,7 +167,7 @@
       <span id="iTotal">80 total soal</span><span>·</span><span>Timer otomatis</span>
     </div>
     <button class="btn-primary" onclick="startQuiz()">MULAI LATIHAN →</button>
-    <button class="btn-ghost" id="histBtn" style="margin-top:10px;display:none" onclick="showHistory()">📊 Lihat Riwayat Analisis</button>
+    <button class="btn-ghost" id="histBtn" style="margin-top:10px;colour:#fff;display:none" onclick="showHistory()">📊 Lihat Riwayat Analisis</button>
   </div>
 
   <!-- QUIZ (static shell, content updated via JS) -->
