@@ -285,10 +285,10 @@ function setDiff(key){
 function showSc(id){
   ['scHome','scQuiz','scResult','scHistory'].forEach(s=>{
     const el=document.getElementById(s);
-    if(el){el.style.display='none';el.classList.remove('screen')}
+    if(el){el.style.display='none'; el.style.visibility='hidden';el.classList.remove('screen')}
   });
   const el=document.getElementById(id);
-  if(el){el.style.display='block';void el.offsetWidth;el.classList.add('screen')}
+  if(el){el.style.display='block';el.style.visibility='visible';void el.offsetWidth;el.classList.add('screen')}
 }
 
 // ══════════════════════════════════════════════════
@@ -467,7 +467,7 @@ function bDt(){
 // ══════════════════════════════════════════════════
 function showHistory(){
   hOp=null;dSess=null;
-  paintHistory();showSc('scHistory');
+  showSc('scHistory');paintHistory();
 }
 function paintHistory(){
   document.getElementById('scHistory').innerHTML=hOp?bHDrill():bHOv();
